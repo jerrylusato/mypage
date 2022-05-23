@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title><%=user.name %> | MyLinks</title>
+  <!-- <link rel="stylesheet" href="./public/index-demo.css" /> -->
+</head>
+
+<body>
+  <header>
+    <div class="div-header">
+      <!-- <img class="profile-pic" src="dp.jpg" alt=<%=user.username %> /> -->
+      <h2><%=user.name %></h2>
+    </div>
+  </header>
+  <main>
+    <% const links = user.links %>
+    <% if (links.length> 0) { %>
+      <% for (i=0; i < links.length; i++) { %>
+        <div class="link">
+          <a href=<%=`/${user._id}/link/${links[i]._id}` %> >
+              <!-- <img 
+              class="link-pic" 
+              src=<%= "./" + links[i].image %> 
+              alt=<%=links[i].title %> 
+              /> -->
+              <h5>
+                <%=links[i].title %>
+              </h5>
+          </a>
+        </div>
+        <% } %>
+          <% } else { %>
+            <p>You have No Links Yet</p>
+          <% } %>
+  </main>
+</body>
+
+</html>
