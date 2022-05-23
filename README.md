@@ -1,2 +1,2 @@
 # mypage
-##Creating your own simple landing page instantly
+Creating your own simple landing page instantly
