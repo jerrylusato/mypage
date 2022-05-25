@@ -1,6 +1,9 @@
-const User = require('../models/user')
 const initializePassport = require('../passport-config')
+const User = require('../models/user')
+const { uploadFile } = require('../s3')
 const passport = require('passport')
+const util = require('util')
+const fs = require('fs')
 
 initializePassport(
     passport,
@@ -30,11 +33,14 @@ const register = async (req, res) => {
         res.redirect('/login')
     } else {
         try {
+            const avatarObj = await uploadFile(req.file)
+            const unlinkFile = util.promisify(fs.unlink)
+            await unlinkFile(req.file.path)
             const user = new User({
                 'name': name,
+                'avatar': avatarObj.Key,
                 'email': email,
                 'password': password,
-                'profile_picture': '', //req.file.filename,
                 'views': 0,
                 'links': []
             })

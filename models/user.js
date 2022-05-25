@@ -3,13 +3,13 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   'name': String,
+  'avatar': String,
   'email': String,
   'password': String,
-  'profile_pic': String,
   'views': Number,
   'links': [{
     'title': String,
-    'link_pic': String,
+    'image': String,
     'url': String,
     'views': Number,
     'clicks': Number

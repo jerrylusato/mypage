@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="auth.css"> -->
     <title>Register | MyLinks</title>
+    <link rel="icon" type="image/svg+xml" href="https://example.com/image.svg">
 </head>
 <body>
 
-    <h1>Register</h1>
-<form action="/register" method="POST">
+<h1>Register</h1>
+<form action="/register" method="POST" enctype="multipart/form-data">
     <div>
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="avatar">Avatar</label>
+        <input type="file" id="avatar" name="avatar" required>
     </div>
     <div>
         <label for="email">Email</label>

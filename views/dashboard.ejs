@@ -7,15 +7,15 @@
     <title>Dashboard | MyLinks</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="create-demo.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="icon" type="image/svg+xml" href="https://example.com/image.svg">
 </head>
 
 <body>
     <header>
         <div class="profile">
-            <p>Hi <%=user.name %>!</p>
-            <!-- <img class="profile-pic" src="dp.jpg" /> -->
+            <h1><%=user.name %></h1>
+            <img src=<%="/avatar/" + user.avatar %> style="width: 150px"/>
         </div>
         <form action='/logout' method="POST">
             <button type="submit">Log Out</button>
@@ -23,17 +23,16 @@
         <p>Your Page: <%=`${hostUrl}/${user._id}` %> </p>
     </header>
     <main>
-        <form class="add-link" 
+        <form class="add-link"
         action=<%="/" + user._id + "/new-link" %> 
-        method="POST" >
-        <!-- enctype="multipart/form-data" -->
+        method="POST" enctype="multipart/form-data" >
             <fieldset>
                 <!-- <input type="hidden" name="userId" value=<%=user._id %>> -->
                 <legend>Add Link</legend>
                 <label for="title">Link Title:</label>
                 <input id="title" type="text" name="title" placeholder="Title" required /><br>
-                <!-- <label for="image">Link Picture:</label>
-                <input id="image" type="file" name="image" /><br> -->
+                <label for="image">Link Picture:</label>
+                <input id="image" type="file" name="image" /><br>
                 <label for="url">Link:</label>
                 <input id="url" type="url" name="url" placeholder="https://www.example.com/" required/><br>
                 <input type="submit" value="ADD LINK" />
@@ -45,18 +44,13 @@
                 <% for (i=0; i < links.length; i++) { %>
                     <div class="link">
                         <a href=<%=`/${user._id}/link/${links[i]._id}` %>>
-                                <!-- <img class="link-pic" src=<%="./" + links[i].image %>
-                                alt=<%=links[i].title %> /> -->
+                                <img src=<%="/image/" + links[i].image %> style="width: 150px"/>
                                     <h5>
                                         <%=links[i].title %>
                                     </h5>
                         </a>
                         <a href=<%=`/${user._id}/delete/${links[i]._id}` %>>delete</a>
-                        <!-- <p><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> <%=links[i].clicks %> </p>
-                        <form action="/delete/link" method="POST">
-                            <input type="hidden" name="_id" value=<%= links[i]._id %> >
-                            <button type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        </form> -->
+                        <!-- <p><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> <%=links[i].clicks %> </p> -->
                     </div>
 
                     <% } %>

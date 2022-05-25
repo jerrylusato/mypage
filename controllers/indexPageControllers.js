@@ -1,3 +1,4 @@
+const { getFileStream } = require('../s3')
 const User = require('../models/user')
 
 const get_dashboard = (req, res) => {
@@ -16,7 +17,14 @@ const get_index = (req, res) => {
     .catch(err => console.log(err))
 }
 
+const get_avatar = (req, res) => {
+    const key = req.params.key
+    const readStream = getFileStream(key)
+    readStream.pipe(res)
+}
+
 module.exports = {
     get_dashboard,
-    get_index
+    get_index,
+    get_avatar
 }

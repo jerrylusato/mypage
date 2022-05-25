@@ -6,13 +6,13 @@
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <title><%=user.name %> | MyLinks</title>
-  <!-- <link rel="stylesheet" href="./public/index-demo.css" /> -->
+  <link rel="icon" type="image/svg+xml" href="https://example.com/image.svg">
 </head>
 
 <body>
   <header>
     <div class="div-header">
-      <!-- <img class="profile-pic" src="dp.jpg" alt=<%=user.username %> /> -->
+      <img src=<%="/avatar/" + user.avatar %> style="width: 150px"/>
       <h2><%=user.name %></h2>
     </div>
   </header>
@@ -22,11 +22,7 @@
       <% for (i=0; i < links.length; i++) { %>
         <div class="link">
           <a href=<%=`/${user._id}/link/${links[i]._id}` %> >
-              <!-- <img 
-              class="link-pic" 
-              src=<%= "./" + links[i].image %> 
-              alt=<%=links[i].title %> 
-              /> -->
+              <img src=<%="/image/" + links[i].image %> style="width: 150px"/>
               <h5>
                 <%=links[i].title %>
               </h5>
