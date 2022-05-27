@@ -8,21 +8,16 @@ const s3 = new S3({
     secretAccessKey: process.env.AWS_SECRET_KEY
 })
 
-//upload
 const uploadFile = file => {
     const fileStream = fs.createReadStream(file.path)
-
     const uploadParams = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Body: fileStream,
         Key: file.filename
     }
-
     return s3.upload(uploadParams).promise()
-
 }
 
-//download
 const getFileStream = fileKey => {
     const downloadParams = {
         Key: fileKey,
@@ -31,10 +26,14 @@ const getFileStream = fileKey => {
     return s3.getObject(downloadParams).createReadStream()
 }
 
-//delete*
-
-
+const deleteFile = fileKey => {
+    const deleteParams = {
+        Key: fileKey,
+        Bucket: process.env.AWS_BUCKET_NAME
+    }
+    return s3.deleteObject(deleteParams).promise()
+}
 
 exports.uploadFile = uploadFile
 exports.getFileStream = getFileStream
-
+exports.deleteFile = deleteFile
