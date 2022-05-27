@@ -1,5 +1,5 @@
 const User = require('../models/user')
-const { uploadFile, getFileStream } = require('../s3')
+const { uploadFile, getFileStream, deleteFile } = require('../s3')
 const util = require('util')
 const fs = require('fs')
 
@@ -55,6 +55,8 @@ const delete_link = (req, res) => {
     .findById(userId)
     .then(async user => {
         const links = user.links
+        const linkToDelete = links.filter(val => (val._id == linkId))
+        await deleteFile(linkToDelete.image)
         newLinks = links.filter(val => !(val._id == linkId))
         await User.findByIdAndUpdate(userId, { links: newLinks })
     })
