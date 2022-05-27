@@ -10,10 +10,10 @@ const get_dashboard = (req, res) => {
     .catch(err => console.log(err))
 }
 
-const get_index = (req, res) => {
+const get_page = (req, res) => {
     User
     .findById(req.params.id)
-    .then(result => res.render('index.ejs', { user: result }))
+    .then(result => res.render('page.ejs', { user: result }))
     .catch(err => console.log(err))
 }
 
@@ -25,6 +25,6 @@ const get_avatar = (req, res) => {
 
 module.exports = {
     get_dashboard,
-    get_index,
+    get_page,
     get_avatar
 }
