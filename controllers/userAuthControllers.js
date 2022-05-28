@@ -29,7 +29,7 @@ const logout = (req, res) => {
 const register = async (req, res) => {
     const { name, email, password } = req.body
     const registered = await User.findOne({ email: email })
-    if(registered){
+    if (registered) {
         res.redirect('/login')
     } else {
         try {
@@ -45,9 +45,9 @@ const register = async (req, res) => {
                 'links': []
             })
             user
-            .save()
-            .then(result => res.redirect('/login'))
-        } catch(err) {
+                .save()
+                .then(result => res.redirect('/login'))
+        } catch (err) {
             console.log(err)
             res.redirect('/register')
         }

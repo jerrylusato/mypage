@@ -17,14 +17,14 @@ const add_link = async (req, res) => {
         'clicks': 0
     }
     User
-    .findById(userId)
-    .then( async user => {
-        const links = user.links
-        links.push(link)
-        await User.findByIdAndUpdate(userId, { links: links })
-    })
-    .then(user => res.redirect('/dashboard/' + userId))
-    .catch(err => console.log(err))
+        .findById(userId)
+        .then(async user => {
+            const links = user.links
+            links.push(link)
+            await User.findByIdAndUpdate(userId, { links: links })
+        })
+        .then(user => res.redirect('/dashboard/' + userId))
+        .catch(err => console.log(err))
 }
 
 const get_image = (req, res) => {
@@ -38,13 +38,13 @@ const open_link = (req, res) => {
     const userId = req.params.id
     const linkId = req.params.linkId
     User
-    .findById(userId)
-    .then(user => {
-        const links = user.links
-        reqLinks = links.filter(val => val._id == linkId)
-    })
-    .then(() => res.redirect(reqLinks[0].url))
-    .catch(err => console.log(err))
+        .findById(userId)
+        .then(user => {
+            const links = user.links
+            reqLinks = links.filter(val => val._id == linkId)
+        })
+        .then(() => res.redirect(reqLinks[0].url))
+        .catch(err => console.log(err))
 }
 
 const delete_link = (req, res) => {
@@ -52,16 +52,16 @@ const delete_link = (req, res) => {
     const userId = req.params.id
     const linkId = req.params.linkId
     User
-    .findById(userId)
-    .then(async user => {
-        const links = user.links
-        const linkToDelete = links.filter(val => (val._id == linkId))
-        await deleteFile(linkToDelete.image)
-        newLinks = links.filter(val => !(val._id == linkId))
-        await User.findByIdAndUpdate(userId, { links: newLinks })
-    })
-    .then(() => res.redirect('/dashboard/' + userId))
-    .catch(err => console.log(err))
+        .findById(userId)
+        .then(async user => {
+            const links = user.links
+            const linksToDelete = links.filter(val => (val._id == linkId))
+            await deleteFile(linksToDelete[0].image)
+            newLinks = links.filter(val => !(val._id == linkId))
+            await User.findByIdAndUpdate(userId, { links: newLinks })
+        })
+        .then(() => res.redirect('/dashboard/' + userId))
+        .catch(err => console.log(err))
 }
 
 module.exports = {
