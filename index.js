@@ -12,7 +12,7 @@ app.set('view-engine', 'ejs')
 app.use('/', router)
 
 mongoose
-.connect(process.env.MONGO_URI)
-.then(() => app.listen(process.env.PORT))
-.then(() => console.log('Listening...'))
-.catch(err => console.log(err))
+  .connect(process.env.MONGO_URI)
+  .then(() => app.listen(process.env.PORT))
+  .then(() => console.log('Listening...'))
+  .catch(err => console.log(err))
