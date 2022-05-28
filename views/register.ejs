@@ -1,39 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="auth.css"> -->
-    <title>Register | MyLinks</title>
+    <title>Register | MyPage</title>
     <link rel="icon" type="image/svg+xml" href="https://example.com/image.svg">
 </head>
+
 <body>
+    <h3>Register</h3>
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="avatar">Avatar</label>
+            <input type="file" id="avatar" name="avatar" required>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <br>
+        <input type="submit" value="Register">
+    </form>
 
-<h1>Register</h1>
-<form action="/register" method="POST" enctype="multipart/form-data">
-    <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-    </div>
-    <div>
-        <label for="avatar">Avatar</label>
-        <input type="file" id="avatar" name="avatar" required>
-    </div>
-    <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <input type="submit" value="Register">
-</form>
+    <p>Registered? <a href="/login">Login</a></p>
 
-<p>Registered?</p>
-
-<a href="/login">Login</a>
-    
 </body>
+
 </html>

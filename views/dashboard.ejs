@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard | MyLinks</title>
+    <title>Dashboard | MyPage</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -14,18 +14,21 @@
 <body>
     <header>
         <div class="profile">
-            <h1><%=user.name %></h1>
             <img src=<%="/avatar/" + user.avatar %> style="width: 150px"/>
+            <h1>
+                <%=user.name %>
+            </h1>
         </div>
         <form action='/logout' method="POST">
             <button type="submit">Log Out</button>
         </form>
-        <p>Your Page: <%=`${hostUrl}/${user._id}` %> </p>
+        <div>
+            <p>Your Page:   <code><%=`${hostUrl}/${user._id}` %></code></p>
+        </div>  
     </header>
     <main>
-        <form class="add-link"
-        action=<%="/" + user._id + "/new-link" %> 
-        method="POST" enctype="multipart/form-data" >
+        <form class="add-link" action=<%="/" + user._id + "/new-link" %>
+            method="POST" enctype="multipart/form-data" >
             <fieldset>
                 <!-- <input type="hidden" name="userId" value=<%=user._id %>> -->
                 <legend>Add Link</legend>
@@ -34,29 +37,29 @@
                 <label for="image">Link Picture:</label>
                 <input id="image" type="file" name="image" /><br>
                 <label for="url">Link:</label>
-                <input id="url" type="url" name="url" placeholder="https://www.example.com/" required/><br>
+                <input id="url" type="url" name="url" placeholder="https://www.example.com/" required /><br>
                 <input type="submit" value="ADD LINK" />
             </fieldset>
         </form>
         <section>
-            <% const links = user.links %>
-            <% if (links.length> 0) { %>
-                <% for (i=0; i < links.length; i++) { %>
-                    <div class="link">
-                        <a href=<%=`/${user._id}/link/${links[i]._id}` %>>
+            <% const links=user.links %>
+                <% if (links.length> 0) { %>
+                    <% for (i=0; i < links.length; i++) { %>
+                        <div class="link">
+                            <a href=<%=`/${user._id}/link/${links[i]._id}` %>>
                                 <img src=<%="/image/" + links[i].image %> style="width: 150px"/>
-                                    <h5>
-                                        <%=links[i].title %>
-                                    </h5>
-                        </a>
-                        <a href=<%=`/${user._id}/delete/${links[i]._id}` %>>delete</a>
-                        <!-- <p><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> <%=links[i].clicks %> </p> -->
-                    </div>
+                                <h5>
+                                    <%=links[i].title %>
+                                </h5>
+                            </a>
+                            <a href=<%=`/${user._id}/delete/${links[i]._id}` %>>delete</a>
+                            <!-- <p><i class="fa fa-hand-pointer-o" aria-hidden="true"></i> <%=links[i].clicks %> </p> -->
+                        </div>
 
-                    <% } %>
-                        <% } else { %>
-                            <p>You have No Links Yet</p>
-                            <% } %>
+                        <% } %>
+                            <% } else { %>
+                                <p>You have No Links Yet</p>
+                                <% } %>
         </section>
     </main>
 </body>
